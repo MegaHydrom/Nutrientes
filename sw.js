@@ -1,8 +1,8 @@
-// Service worker do Nutrientes
+// Service worker do AIKE
 // - O app (HTML) sempre tenta a versão mais nova da internet primeiro;
 //   sem internet, abre a última versão guardada.
 // - Os dados do Supabase NUNCA são guardados aqui: vêm sempre do banco.
-const CACHE = 'nutrientes-v1';
+const CACHE = 'aike-v2';
 const ARQUIVOS = ['./', './index.html', './manifest.webmanifest', './icons/icone-192.png', './icons/icone-512.png', './icons/apple-touch-icon.png', './icons/favicon-64.png'];
 
 self.addEventListener('install', e => {

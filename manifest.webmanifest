@@ -1,16 +1,29 @@
 {
-  "name": "Nutrientes",
-  "short_name": "Nutrientes",
-  "description": "Nutrientes dos alimentos, receitas, diário, preços e despensa.",
+  "name": "AIKE: all i can eat",
+  "short_name": "AIKE",
+  "description": "Mais sabor no seu prato. Menos gasto no seu bolso.",
   "lang": "pt-BR",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
-  "background_color": "#F3F5F1",
-  "theme_color": "#1F7A4D",
+  "background_color": "#14301F",
+  "theme_color": "#14301F",
   "icons": [
-    { "src": "icons/icone-192.png", "sizes": "192x192", "type": "image/png" },
-    { "src": "icons/icone-512.png", "sizes": "512x512", "type": "image/png" },
-    { "src": "icons/icone-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+    {
+      "src": "icons/icone-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icons/icone-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "icons/icone-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
   ]
 }
