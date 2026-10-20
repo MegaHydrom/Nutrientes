@@ -785,6 +785,60 @@
   .logo-sub{display:block;margin-top:6px;font-family:'Inter',sans-serif;font-size:.78rem;font-weight:600;letter-spacing:.34em;color:var(--kcal)}
   .topo h1{font-size:clamp(2.1rem,6vw,2.7rem);margin-top:.3em}
 
+  /* ===== COMPARAR PRODUTOS ===== */
+  dialog.largo{width:min(1000px,calc(100vw - 24px))}
+  @media (max-width:720px){ dialog.largo{width:100vw} }
+  .cmp-busca{display:flex;gap:10px;align-items:flex-start;flex-wrap:wrap;margin-top:16px}
+  .cmp-busca .fr-busca{flex:1 1 280px}
+  #cmpBusca{width:100%}
+  .cmp-modos{margin:16px 0 12px}
+  .cmp-wrap{overflow-x:auto;border:1px solid var(--linha);border-radius:14px;background:var(--sup)}
+  .cmp{width:100%;border-collapse:separate;border-spacing:0;font-size:.9rem;font-variant-numeric:tabular-nums;min-width:520px}
+  .cmp th,.cmp td{padding:9px 12px;border-bottom:1px solid var(--linha);text-align:right;vertical-align:middle}
+  .cmp tr:last-child td{border-bottom:0}
+  .cmp th:first-child,.cmp td:first-child{text-align:left;position:sticky;left:0;background:var(--sup);z-index:1;font-weight:600;color:var(--suave);white-space:nowrap;font-size:.84rem}
+  .cmp thead th{vertical-align:bottom;background:var(--sup);border-bottom:2px solid var(--linha)}
+  .cmp-prod{display:flex;flex-direction:column;align-items:flex-end;gap:4px;min-width:130px;text-align:right}
+  .cmp-prod b{font-size:.95rem;color:var(--tinta);line-height:1.2}
+  .cmp-prod small{font-size:.74rem;color:var(--suave);font-weight:500}
+  .cmp-prod .remover{width:26px;height:26px;font-size:1rem;margin-top:-4px}
+  .cmp td.melhor{background:var(--verde-claro);color:var(--kcal);font-weight:800}
+  .cmp td.melhor::after{content:' ✓';font-size:.75rem}
+  .cmp tr.sec td{background:var(--fundo);font-size:.72rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--suave);padding:6px 12px}
+  .cmp tr.sec td:first-child{background:var(--fundo)}
+  .veredito{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+  .veredito span{font-size:.85rem;padding:6px 12px;border-radius:999px;background:var(--verde-claro);color:var(--tinta)}
+  .veredito b{color:var(--kcal)}
+
+  /* ===== COMPRA GRANDE ===== */
+  .compra-cab{display:grid;grid-template-columns:minmax(0,1fr) 180px;gap:12px;margin-top:16px}
+  .compra-linhas{display:flex;flex-direction:column;gap:8px;margin-top:16px}
+  .cl{display:grid;grid-template-columns:minmax(0,2.2fr) minmax(0,1.3fr) 70px minmax(0,1.5fr) minmax(0,1.1fr) 36px 90px 30px;gap:8px;align-items:end;padding:10px 12px;border:1px solid var(--linha);border-radius:12px;background:var(--sup)}
+  .cl.erro{border-color:var(--erro)}
+  .cl label{display:flex;flex-direction:column;gap:3px;font-size:.72rem;font-weight:600;color:var(--suave);min-width:0}
+  .cl input,.cl select{padding:7px 9px;font-size:.92rem;width:100%;min-width:0}
+  .cl .junto{display:flex;gap:4px}
+  .cl .junto select{width:auto;flex:none;padding:7px 4px}
+  .cl .promo-chk{align-items:center;justify-content:flex-end}
+  .cl .promo-chk input{width:20px;height:20px;accent-color:var(--laranja)}
+  .cl .sub{text-align:right;font-size:.92rem;font-weight:700;font-variant-numeric:tabular-nums;padding-bottom:8px}
+  .cl .sub small{display:block;font-size:.7rem;font-weight:500;color:var(--suave)}
+  .cl .remover{margin-bottom:4px;grid-area:auto}
+  .cl .cl-msg{grid-column:1/-1;font-size:.78rem;color:var(--erro);margin:0}
+  .cl .cl-info{grid-column:1/-1;font-size:.78rem;color:var(--suave);margin:0}
+  .compra-total{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-top:14px;padding:14px 16px;border-radius:14px;background:var(--painel);color:#fff}
+  .compra-total b{font-size:1.6rem;font-variant-numeric:tabular-nums}
+  .compra-total small{color:rgba(255,255,255,.7)}
+  .compra-opcoes{display:flex;flex-direction:column;gap:6px;margin-top:6px}
+  @media (max-width:760px){
+    .cl{grid-template-columns:1fr 1fr 1fr;gap:8px}
+    .cl .cl-prod{grid-column:1/-1}
+    .cl .cl-marca{grid-column:1/3}
+    .cl .cl-tam{grid-column:1/3}
+    .cl .sub{grid-column:2/3;text-align:left}
+    .compra-cab{grid-template-columns:1fr}
+  }
+
   /* ===== LOGIN ===== */
   .login{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:28px;padding:32px 16px;background:var(--verde-escuro)}
   .login-marca{text-align:center;color:var(--creme)}
@@ -1026,7 +1080,10 @@
   <section id="abaPrecos" role="tabpanel" aria-labelledby="tab-precos" hidden>
     <div class="barra-acoes">
       <input type="search" id="buscaPreco" placeholder="Buscar alimento" aria-label="Buscar alimento nos preços">
-      <button class="btn primario" id="btnRegistrar" type="button">Registrar preço</button>
+      <span style="display:flex;gap:8px;flex-wrap:wrap">
+        <button class="btn" id="btnCompraGrande" type="button">🧾 Compra grande</button>
+        <button class="btn primario" id="btnRegistrar" type="button">Registrar preço</button>
+      </span>
     </div>
     <div id="precosConteudo"></div>
   </section>
@@ -1345,6 +1402,62 @@
   </form>
 </dialog>
 
+<!-- Comparar produtos -->
+<dialog id="dlgComparar" class="largo" aria-labelledby="cmpTitulo">
+  <div class="det">
+    <div class="det-topo">
+      <div><h2 id="cmpTitulo">Comparar produtos</h2><p class="cat">Escolha de 2 a 4 alimentos ou marcas</p></div>
+      <button class="fechar" type="button" data-fechar aria-label="Fechar">×</button>
+    </div>
+    <div class="cmp-busca">
+      <div class="fr-busca">
+        <input type="search" id="cmpBusca" placeholder="+ Adicionar alimento ou marca" autocomplete="off"
+               role="combobox" aria-expanded="false" aria-controls="cmpSug" aria-autocomplete="list" aria-label="Adicionar produto à comparação">
+        <ul class="sugestoes" id="cmpSug" role="listbox" hidden></ul>
+      </div>
+      <button class="link-btn" type="button" id="cmpLimpar">Limpar</button>
+    </div>
+    <div class="seg cmp-modos" id="cmpModos" role="group" aria-label="Forma de comparar">
+      <button type="button" data-modo-cmp="base" aria-pressed="true">Por 100 g</button>
+      <button type="button" data-modo-cmp="pacote" aria-pressed="false">Por pacote</button>
+      <button type="button" data-modo-cmp="reais" aria-pressed="false">O que R$ 10 compram</button>
+    </div>
+    <div id="cmpConteudo"></div>
+  </div>
+</dialog>
+
+<!-- Compra grande -->
+<dialog id="dlgCompra" class="largo" aria-labelledby="cgTitulo">
+  <form class="det" id="formCompra" novalidate>
+    <div class="det-topo">
+      <div><h2 id="cgTitulo">Registrar compra</h2><p class="cat">Passe os produtos como estão na nota. O rascunho fica salvo enquanto você preenche.</p></div>
+      <button class="fechar" type="button" data-fechar aria-label="Fechar">×</button>
+    </div>
+    <div class="compra-cab">
+      <label class="campo">Mercado<select name="mercado" id="cgMercado"></select></label>
+      <label class="campo">Data<input type="date" name="data"></label>
+    </div>
+    <datalist id="cgProdutos"></datalist>
+    <datalist id="cgMarcas"></datalist>
+    <div class="compra-linhas" id="cgLinhas"></div>
+    <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-top:10px">
+      <button class="btn" type="button" id="cgAddLinha">+ Adicionar produto</button>
+      <span class="ajuda">Produto não está na lista? <button type="button" class="link-btn" id="cgNovoAlim" style="color:var(--kcal)">Cadastre um alimento novo</button></span>
+    </div>
+    <div class="compra-total"><span><small>Total da compra</small><br><b id="cgTotal">R$ 0,00</b></span><span id="cgResumo"></span></div>
+    <div class="compra-opcoes">
+      <label class="check"><input type="checkbox" name="precos" checked><span><b>🏷️ Registrar os preços</b><br><small>Cada produto entra na aba Preços (os marcados com 🔥 entram como promoção).</small></span></label>
+      <label class="check" id="cgInvLinha"><input type="checkbox" name="inventario" checked><span><b>🥫 Somar ao inventário</b><br><small>Adiciona as quantidades na Despensa e tira esses itens da lista de compras.</small></span></label>
+    </div>
+    <p class="msg-erro" id="erroCompra" hidden></p>
+    <div class="rodape-form">
+      <button class="btn perigo" type="button" id="cgDescartar">Descartar rascunho</button>
+      <button class="btn" type="button" data-fechar>Continuar depois</button>
+      <button class="btn primario" type="submit" id="btnSalvarCompra">Salvar compra</button>
+    </div>
+  </form>
+</dialog>
+
 <!-- Rotinas: lista -->
 <dialog id="dlgRotinas" aria-labelledby="rotTitulo">
   <div class="det">
@@ -1417,6 +1530,8 @@
       <button class="mais-op" type="button" data-acao="alimento"><span class="emo">🥕</span><span><b>Novo alimento</b><small>Com os nutrientes do rótulo ou estimados</small></span></button>
       <button class="mais-op" type="button" data-acao="receita"><span class="emo">🍲</span><span><b>Nova receita</b><small>Ingredientes, preparo e porções</small></span></button>
       <button class="mais-op" type="button" data-acao="preco"><span class="emo">🏷️</span><span><b>Novo preço</b><small>Preço do pacote num mercado</small></span></button>
+      <button class="mais-op" type="button" data-acao="compra"><span class="emo">🧾</span><span><b>Registrar compra</b><small>Vários produtos de uma vez, como na nota</small></span></button>
+      <button class="mais-op" type="button" data-acao="comparar"><span class="emo">⚖️</span><span><b>Comparar produtos</b><small>Nutrientes e preços lado a lado</small></span></button>
       <button class="mais-op" type="button" data-acao="promocao"><span class="emo">🔥</span><span><b>Nova promoção</b><small>Oferta que vale por pouco tempo</small></span></button>
       <button class="mais-op" type="button" data-acao="rotina"><span class="emo">🗓️</span><span><b>Nova rotina</b><small>Refeições planejadas do dia</small></span></button>
     </div>
@@ -2240,7 +2355,7 @@ function marcasHTML(a){
         ${m.spec ? tabelaMarca(a, m) : '<p class="mi-vazio">Ainda sem tabela nutricional desta marca. Os cálculos usam a tabela genérica.</p>'}
         ${estado.marcasErro ? '' : `<div class="mi-acoes">${m.spec
           ? (pode ? `<button class="btn perigo" type="button" data-apagarmarca="${m.spec.id}">Apagar tabela</button><button class="btn" type="button" data-editarmarca="${m.marca_id}">Editar tabela</button>` : '')
-          : `<button class="btn primario" type="button" data-editarmarca="${m.marca_id}">Cadastrar tabela desta marca</button>`}</div>`}
+          : `<button class="btn primario" type="button" data-editarmarca="${m.marca_id}">Cadastrar tabela desta marca</button>`}<button class="btn" type="button" data-cmpmarca="${m.marca_id}">Comparar</button></div>`}
       </div>
     </details>`;
   }).join('');
@@ -2431,6 +2546,7 @@ function abrir(k){
     <div class="rodape-det">
       <span class="ok" id="addOk" aria-live="polite"></span>
       ${modoAdmin() ? `<button class="btn perigo" type="button" data-apagaralim>Apagar</button><button class="btn" type="button" data-editaralim>Editar</button>` : ''}
+      <button class="btn" type="button" data-comparar>Comparar</button>
       <button class="btn" type="button" data-registrar>Registrar preço</button>
       <button class="btn" type="button" data-adddia>Registrar no diário</button>
       <button class="btn primario" type="button" data-addref>Adicionar à refeição</button>
@@ -3232,6 +3348,7 @@ formMercado.addEventListener('submit', async e => {
     renderPrecos();
     setStatus(`Mercado ${nome} cadastrado`, 'ok');
     if (mercadoVoltarRegistro && $('#dlgRegistrar').open){ preencherSelectMercados(novo.id); $('#regMercado').focus(); }
+    if ($('#dlgCompra').open){ preencherMercadosCompra(novo.id); salvarRascunho(); }
   } catch (err){
     erroForm('#erroMercado', err.message);
   } finally {
@@ -3354,6 +3471,7 @@ form.addEventListener('submit', async e => {
     $('#novo').close();
     await carregar();
     setStatus(`${nome} salvo`, 'ok');
+    if ($('#dlgCompra').open){ preencherListasCompra(); renderLinhasCompra(); }
   } catch (err){
     erroForm('#erroNovo', err.message);
   } finally {
@@ -4167,6 +4285,8 @@ $('#dlgMais').addEventListener('click', e => {
       if (!estado.mercados.length){ setStatus('Cadastre um mercado antes de registrar preços', 'erro'); abrirNovoMercado(false); return; }
       abrirRegistrar();
     },
+    compra: () => { if (estado.precosErro){ mudarAba('precos'); return; } abrirCompra(); },
+    comparar: () => abrirComparar(),
     rotina: () => {
       if (estado.rotinasErro){ mudarAba('diario'); setStatus('Rode o script supabase_rotinas.sql para usar rotinas', 'erro'); return; }
       abrirFormRotina();
@@ -4480,6 +4600,382 @@ formComprei.addEventListener('submit', async e => {
     setStatus(`${a.nome}: +${tamTxt(q, a)} no inventário${registrar ? ', preço registrado' : ''}`, 'ok');
   } catch (err){ erroForm('#erroComprei', err.message); }
   finally { btn.disabled = false; btn.textContent = 'Confirmar compra'; }
+});
+
+/* ===== COMPARAR PRODUTOS ===== */
+estado.comparar = [];
+let cmpModo = 'base', cmpSugLista = [], cmpSugIdx = -1;
+// [coluna, nome, unidade, direção]: 1 = mais é melhor, -1 = menos é melhor, 0 = neutro
+const CMP_NUTRIENTES = [
+  ['calorias', 'Calorias', 'kcal', 0], ['proteinas', 'Proteínas', 'g', 1], ['carboidratos', 'Carboidratos', 'g', 0],
+  ['acucares', 'Açúcares', 'g', -1], ['gorduras_totais', 'Gorduras totais', 'g', 0], ['gorduras_saturadas', 'Gorduras saturadas', 'g', -1],
+  ['gorduras_trans', 'Gorduras trans', 'g', -1], ['fibras', 'Fibras', 'g', 1], ['sodio', 'Sódio', 'mg', -1],
+];
+
+function itemCmp(c){
+  const a = achar(c.k);
+  if (!a) return null;
+  const m = c.marcaId ? (a.marcas || []).find(x => x.marca_id === c.marcaId) : null;
+  const spec = m?.spec || null;
+  const nut = campo => {
+    if (spec && spec[campo] !== null && spec[campo] !== undefined) return Number(spec[campo]);
+    const v = valorGenerico(a, campo);
+    return v === null || v === undefined ? null : Number(v);
+  };
+  return { c, a, m, spec, nut, oferta: m ? m.melhor : (a.preco?.melhor || null) };
+}
+function qtdCmp(it){
+  if (cmpModo === 'base') return it.a.base;
+  if (!it.oferta) return null;
+  return cmpModo === 'pacote' ? Number(it.oferta.quantidade) : 10 / it.oferta.porBase * it.a.base;
+}
+
+function abrirComparar(k, marcaId){
+  if (k) adicionarCmp(k, marcaId ?? null);
+  renderComparar();
+  const d = $('#dlgComparar');
+  if (!d.open) d.showModal();
+  $('#cmpBusca').focus();
+}
+function adicionarCmp(k, marcaId){
+  if (estado.comparar.some(x => x.k === k && x.marcaId === marcaId)) return;
+  if (estado.comparar.length >= 4){ setStatus('Compare até 4 produtos por vez', 'erro'); return; }
+  estado.comparar.push({ k, marcaId });
+}
+
+// Índices do melhor valor de uma linha (ou nenhum, se não der para comparar)
+function melhores(valores, dir, comparavel){
+  if (!dir || !comparavel) return new Set();
+  const validos = valores.map((v, i) => [v, i]).filter(([v]) => v !== null && !isNaN(v));
+  if (validos.length < 2) return new Set();
+  const alvo = dir > 0 ? Math.max(...validos.map(x => x[0])) : Math.min(...validos.map(x => x[0]));
+  const iguais = validos.filter(([v]) => Math.abs(v - alvo) < 1e-9);
+  return iguais.length === validos.length ? new Set() : new Set(iguais.map(x => x[1]));
+}
+
+function renderComparar(){
+  document.querySelectorAll('[data-modo-cmp]').forEach(b => b.setAttribute('aria-pressed', b.dataset.modoCmp === cmpModo));
+  const itens = estado.comparar.map(itemCmp).filter(Boolean);
+  const box = $('#cmpConteudo');
+  if (!itens.length){
+    box.innerHTML = '<div class="vazio" style="padding:36px 12px"><strong>Nada para comparar ainda</strong>Busque acima um alimento ou uma marca (ex.: "arroz camil"). Dá pra comparar até 4 de uma vez.</div>';
+    return;
+  }
+  const mesmaUn = new Set(itens.map(i => i.a.unidade)).size === 1;
+  const qs = itens.map(qtdCmp);
+  const vencedores = [];
+  const linha = (rotulo, valores, formatar, dir, comparavel, guardar) => {
+    const best = melhores(valores, dir, comparavel);
+    if (guardar && best.size === 1) vencedores.push([guardar, itens[[...best][0]]]);
+    return `<tr><td>${rotulo}</td>${valores.map((v, i) => `<td class="${best.has(i) ? 'melhor' : ''}">${v === null || v === undefined || isNaN(v) ? '—' : formatar(v, itens[i])}</td>`).join('')}</tr>`;
+  };
+  const sec = t => `<tr class="sec"><td>${t}</td>${itens.map(() => '<td></td>').join('')}</tr>`;
+  const porBase = itens.map(i => i.oferta ? i.oferta.porBase : null);
+  const titulo = cmpModo === 'base' ? (mesmaUn ? `Por ${baseTxt(itens[0].a)}` : 'Por 100 g, 100 ml ou 1 unidade')
+               : cmpModo === 'pacote' ? 'No pacote mais em conta' : 'O que R$ 10 compram';
+  const nutComparavel = cmpModo === 'reais' || (cmpModo === 'base' && mesmaUn);
+
+  const tabela = `<div class="cmp-wrap"><table class="cmp">
+    <thead><tr><th></th>${itens.map((it, i) => `<th><div class="cmp-prod">
+      <span class="emo" aria-hidden="true">${emojiDe(it.a)}</span>
+      <b>${esc(it.a.nome)}</b>
+      <small>${it.m ? esc(it.m.nome) : 'Genérico'}${it.m && !it.spec ? ', tabela genérica' : ''}</small>
+      <button class="remover" type="button" data-tirarcmp="${i}" aria-label="Tirar ${esc(it.a.nome)} da comparação">×</button>
+    </div></th>`).join('')}</tr></thead>
+    <tbody>
+      ${sec('Preço')}
+      ${linha('Pacote mais em conta', itens.map(it => it.oferta ? it.oferta.preco : null), (v, it) => `${brl(v)}<br><small>${tamTxt(Number(it.oferta.quantidade), it.a)} em ${esc(it.oferta.mercado)}</small>`, 0)}
+      ${linha(mesmaUn ? `Preço por ${baseTxt(itens[0].a)}` : 'Preço por 100 g ou un', porBase, (v, it) => `${brl(v)}${mesmaUn ? '' : `<br><small>por ${baseTxt(it.a)}</small>`}`, -1, mesmaUn, 'Mais barato')}
+      ${linha('Proteína por R$ 1', itens.map((it, i) => it.oferta && it.nut('proteinas') !== null ? it.nut('proteinas') / it.oferta.porBase : null), v => `${fmt(v)} g`, 1, true, 'Mais proteína por real')}
+      ${linha('Calorias por R$ 1', itens.map(it => it.oferta && it.nut('calorias') !== null ? it.nut('calorias') / it.oferta.porBase : null), v => `${fmt(v)} kcal`, 0)}
+      ${sec(titulo)}
+      ${linha('Quantidade', qs, (v, it) => tamTxt(v >= 1000 ? Math.round(v / 10) * 10 : Math.round(v * 10) / 10, it.a), cmpModo === 'reais' ? 1 : 0, cmpModo === 'reais' && mesmaUn)}
+      ${cmpModo !== 'reais' ? linha('Preço', itens.map((it, i) => it.oferta && qs[i] !== null ? it.oferta.porBase * qs[i] / it.a.base : null), v => brl(v), cmpModo === 'base' ? -1 : 0, cmpModo === 'base' && mesmaUn) : ''}
+      ${CMP_NUTRIENTES.filter(([campo]) => itens.some(it => it.nut(campo) !== null)).map(([campo, nome, un, dir]) =>
+        linha(nome, itens.map((it, i) => it.nut(campo) === null || qs[i] === null ? null : it.nut(campo) * qs[i] / it.a.base), v => `${fmt(v)} ${un}`, dir, nutComparavel,
+          campo === 'fibras' ? 'Mais fibra' : campo === 'acucares' ? 'Menos açúcar' : campo === 'sodio' ? 'Menos sódio' : null)).join('')}
+    </tbody>
+  </table></div>`;
+
+  const avisos = [];
+  if (itens.length === 1) avisos.push('Adicione mais um produto para comparar.');
+  if (!mesmaUn && cmpModo === 'base') avisos.push('Os produtos usam medidas diferentes (g, ml ou un), então os nutrientes por 100 g não são comparáveis entre si. Use "O que R$ 10 compram" para comparar o custo-benefício.');
+  if (cmpModo === 'pacote') avisos.push('Os pacotes têm tamanhos diferentes, então aqui os nutrientes não são destacados. Para comparar de igual para igual, use "Por 100 g" ou "O que R$ 10 compram".');
+  const semPreco = itens.filter(it => !it.oferta);
+  if (semPreco.length) avisos.push(`${semPreco.map(it => it.a.nome + (it.m ? ` (${it.m.nome})` : '')).join(', ')} ainda sem preço registrado.`);
+
+  box.innerHTML = tabela
+    + (vencedores.length ? `<div class="veredito">${vencedores.map(([t, it]) => `<span>${t}: <b>${esc(it.a.nome)}${it.m ? ` ${esc(it.m.nome)}` : ''}</b></span>`).join('')}</div>` : '')
+    + (avisos.length ? `<ul class="avisos">${avisos.map(x => `<li>* ${esc(x)}</li>`).join('')}</ul>` : '');
+}
+
+function renderCmpSug(){
+  // cada palavra digitada precisa aparecer no nome do alimento ou da marca ("arroz camil")
+  const palavras = String($('#cmpBusca').value).trim().split(/\s+/).map(norm).filter(Boolean);
+  if (!palavras.length){ fecharCmpSug(); return; }
+  const lista = [];
+  estado.alimentos.forEach(a => {
+    const nome = norm(a.nome);
+    const marcas = (a.marcas || []).filter(m => palavras.every(p => (nome + norm(m.nome)).includes(p)));
+    const soNome = palavras.every(p => nome.includes(p));
+    // se alguma palavra é da marca, mostra primeiro as marcas
+    if (soNome) lista.push({ k: a.k, marcaId: null, a, rotulo: a.nome, sub: 'genérico' });
+    marcas.forEach(m => lista.push({ k: a.k, marcaId: m.marca_id, a, rotulo: `${a.nome} · ${m.nome}`, sub: m.spec ? 'tabela da marca' : 'marca' }));
+  });
+  if (palavras.length > 1) lista.sort((x, y) => (y.marcaId ? 1 : 0) - (x.marcaId ? 1 : 0));
+  cmpSugLista = lista.slice(0, 10);
+  cmpSugIdx = cmpSugLista.length ? 0 : -1;
+  $('#cmpSug').innerHTML = cmpSugLista.length
+    ? cmpSugLista.map((x, i) => `<li role="option" id="cps${i}" data-i="${i}" aria-selected="${i === cmpSugIdx}"><span><span class="emo p" aria-hidden="true">${emojiDe(x.a)}</span>${esc(x.rotulo)}</span><small>${x.sub}</small></li>`).join('')
+    : '<li class="sem">Nada encontrado</li>';
+  $('#cmpSug').hidden = false;
+  $('#cmpBusca').setAttribute('aria-expanded', 'true');
+}
+function marcarCmpSug(){
+  $('#cmpSug').querySelectorAll('[role=option]').forEach((li, i) => li.setAttribute('aria-selected', i === cmpSugIdx));
+  $('#cmpBusca').setAttribute('aria-activedescendant', cmpSugIdx >= 0 ? 'cps' + cmpSugIdx : '');
+}
+function fecharCmpSug(){ $('#cmpSug').hidden = true; $('#cmpBusca').setAttribute('aria-expanded', 'false'); cmpSugIdx = -1; }
+function escolherCmpSug(i){
+  const x = cmpSugLista[i]; if (!x) return;
+  $('#cmpBusca').value = '';
+  fecharCmpSug();
+  adicionarCmp(x.k, x.marcaId);
+  renderComparar();
+  $('#cmpBusca').focus();
+}
+$('#cmpBusca').addEventListener('input', renderCmpSug);
+$('#cmpBusca').addEventListener('blur', fecharCmpSug);
+$('#cmpBusca').addEventListener('keydown', e => {
+  if ($('#cmpSug').hidden) return;
+  if (e.key === 'ArrowDown'){ e.preventDefault(); cmpSugIdx = Math.min(cmpSugIdx + 1, cmpSugLista.length - 1); marcarCmpSug(); }
+  else if (e.key === 'ArrowUp'){ e.preventDefault(); cmpSugIdx = Math.max(cmpSugIdx - 1, 0); marcarCmpSug(); }
+  else if (e.key === 'Enter'){ e.preventDefault(); if (cmpSugIdx >= 0) escolherCmpSug(cmpSugIdx); }
+  else if (e.key === 'Escape'){ e.preventDefault(); fecharCmpSug(); }
+});
+$('#cmpSug').addEventListener('mousedown', e => { e.preventDefault(); const li = e.target.closest('[data-i]'); if (li) escolherCmpSug(Number(li.dataset.i)); });
+$('#cmpModos').addEventListener('click', e => { const b = e.target.closest('[data-modo-cmp]'); if (b){ cmpModo = b.dataset.modoCmp; renderComparar(); } });
+$('#cmpConteudo').addEventListener('click', e => {
+  const b = e.target.closest('[data-tirarcmp]'); if (!b) return;
+  estado.comparar.splice(Number(b.dataset.tirarcmp), 1);
+  renderComparar();
+});
+$('#cmpLimpar').addEventListener('click', () => { estado.comparar = []; renderComparar(); $('#cmpBusca').focus(); });
+
+/* ===== COMPRA GRANDE ===== */
+const formCompra = $('#formCompra');
+const chaveCompra = () => 'aike_compra_' + (auth.sessao?.user?.id || '');
+const novaLinhaCompra = () => ({ prod: '', marca: '', pacotes: '1', tam: '', un: '', preco: '', promo: false });
+const alimPorNome = txt => estado.alimentos.find(a => norm(a.nome) === norm(txt));
+const UN_GENERICAS = [['g', 'g', 1], ['kg', 'kg', 1000], ['ml', 'ml', 1], ['l', 'L', 1000], ['un', 'un', 1]];
+let cgLinhas = [];
+
+function salvarRascunho(){
+  try { localStorage.setItem(chaveCompra(), JSON.stringify({ mercado: formCompra.mercado.value, data: formCompra.data.value, linhas: cgLinhas })); } catch {}
+}
+function preencherMercadosCompra(sel){
+  $('#cgMercado').innerHTML = '<option value="">Escolha o mercado</option>' + estado.mercados.map(m => `<option value="${m.id}">${esc(m.nome)}${m.bairro ? ' (' + esc(m.bairro) + ')' : ''}</option>`).join('') + '<option value="novo">+ Cadastrar novo mercado</option>';
+  if (sel) $('#cgMercado').value = String(sel);
+}
+function preencherListasCompra(){
+  $('#cgProdutos').innerHTML = [...estado.alimentos].sort((x, y) => x.nome.localeCompare(y.nome, 'pt-BR')).map(a => `<option value="${esc(a.nome)}">`).join('');
+  $('#cgMarcas').innerHTML = estado.marcas.map(m => `<option value="${esc(m.nome)}">`).join('');
+}
+
+function abrirCompra(){
+  let r = null;
+  try { r = JSON.parse(localStorage.getItem(chaveCompra())); } catch {}
+  formCompra.reset();
+  preencherMercadosCompra(r?.mercado);
+  preencherListasCompra();
+  formCompra.data.value = r?.data || hoje();
+  cgLinhas = r?.linhas?.length ? r.linhas : [novaLinhaCompra(), novaLinhaCompra(), novaLinhaCompra()];
+  $('#cgInvLinha').hidden = !usarInventario();
+  erroForm('#erroCompra', '');
+  renderLinhasCompra();
+  $('#dlgCompra').showModal();
+  if (r?.linhas?.some(l => l.prod)) setStatus('Rascunho da compra recuperado', 'ok');
+  ($('#cgMercado').value ? $('#cgLinhas .cl input[name=prod]') : $('#cgMercado')).focus();
+}
+
+function renderLinhasCompra(){
+  $('#cgLinhas').innerHTML = cgLinhas.map((l, i) => {
+    const a = alimPorNome(l.prod);
+    const ops = a ? opcoesUnidade(a) : UN_GENERICAS;
+    const un = ops.some(o => o[0] === l.un) ? l.un : ops[0][0];
+    l.un = un;
+    return `<div class="cl" data-i="${i}">
+      <label class="cl-prod">Produto<input name="prod" list="cgProdutos" value="${esc(l.prod)}" autocomplete="off" placeholder="Ex.: Arroz branco"></label>
+      <label class="cl-marca">Marca<input name="marca" list="cgMarcas" value="${esc(l.marca)}" autocomplete="off" placeholder="opcional"></label>
+      <label>Pacotes<input name="pacotes" inputmode="decimal" value="${esc(l.pacotes)}"></label>
+      <label class="cl-tam">Tamanho do pacote<span class="junto"><input name="tam" inputmode="decimal" value="${esc(l.tam)}" placeholder="Ex.: 5"><select name="un" aria-label="Unidade">${ops.map(([v, t]) => `<option value="${v}"${v === un ? ' selected' : ''}>${t}</option>`).join('')}</select></span></label>
+      <label>Preço do pacote<input name="preco" inputmode="decimal" value="${esc(l.preco)}" placeholder="R$"></label>
+      <label class="promo-chk" title="Estava em promoção">🔥<input type="checkbox" name="promo"${l.promo ? ' checked' : ''} aria-label="Estava em promoção"></label>
+      <div class="sub" data-sub></div>
+      <button type="button" class="remover" data-tirarlinha aria-label="Remover este produto">×</button>
+      <p class="cl-info" data-info></p>
+    </div>`;
+  }).join('');
+  cgLinhas.forEach((_, i) => atualizarLinhaCompra(i));
+  atualizarTotalCompra();
+}
+
+function calcLinha(l){
+  const a = alimPorNome(l.prod);
+  const pac = num(l.pacotes), preco = num(l.preco), t = num(l.tam);
+  const op = (a ? opcoesUnidade(a) : UN_GENERICAS).find(o => o[0] === l.un);
+  const tam = t > 0 ? t * (op ? op[2] : 1) : null;
+  return { a, pac, preco, tam, sub: pac > 0 && preco > 0 ? pac * preco : null };
+}
+
+function atualizarLinhaCompra(i){
+  const l = cgLinhas[i], el = $(`#cgLinhas .cl[data-i="${i}"]`);
+  if (!el) return;
+  const { a, preco, tam, sub } = calcLinha(l);
+  el.querySelector('[data-sub]').innerHTML = sub !== null ? `<small>subtotal</small>${brl(sub)}` : '<small>subtotal</small>—';
+  const info = el.querySelector('[data-info]');
+  if (l.prod && !a){ info.style.color = 'var(--erro)'; info.textContent = `Não encontrei "${l.prod}". Escolha da lista ou cadastre o alimento.`; return; }
+  info.style.color = '';
+  if (a && tam && preco > 0){
+    const porBase = preco / tam * a.base;
+    let comp = '';
+    if (a.preco){ const d = (porBase - a.preco.min) / a.preco.min * 100; comp = Math.abs(d) < 0.5 ? ', igual ao melhor preço conhecido' : d < 0 ? `, ${Math.round(-d)}% abaixo do melhor preço conhecido` : `, ${Math.round(d)}% acima do melhor preço conhecido`; }
+    info.textContent = `${emojiDe(a)} ${brl(porBase)} por ${baseTxt(a)}${comp}.`;
+  } else info.textContent = a ? `${emojiDe(a)} ${a.nome}, medido em ${rotUn(a.unidade)}` : '';
+}
+
+function atualizarTotalCompra(){
+  let total = 0, produtos = 0, pacotes = 0;
+  cgLinhas.forEach(l => { const c = calcLinha(l); if (c.sub !== null){ total += c.sub; produtos++; pacotes += c.pac; } });
+  $('#cgTotal').textContent = brl(total);
+  $('#cgResumo').innerHTML = produtos ? `<small>${plural(produtos, 'produto', 'produtos')}, ${fmt(pacotes)} ${pacotes === 1 ? 'pacote' : 'pacotes'}</small>` : '';
+}
+
+$('#cgLinhas').addEventListener('input', e => {
+  const el = e.target.closest('.cl'); if (!el) return;
+  const i = Number(el.dataset.i), campo = e.target.name;
+  cgLinhas[i][campo] = e.target.type === 'checkbox' ? e.target.checked : e.target.value;
+  el.classList.remove('erro');
+  atualizarLinhaCompra(i);
+  atualizarTotalCompra();
+  salvarRascunho();
+});
+$('#cgLinhas').addEventListener('change', e => {
+  const el = e.target.closest('.cl'); if (!el) return;
+  const i = Number(el.dataset.i);
+  if (e.target.type === 'checkbox'){ cgLinhas[i].promo = e.target.checked; salvarRascunho(); atualizarTotalCompra(); return; }
+  if (e.target.name === 'un'){ cgLinhas[i].un = e.target.value; atualizarLinhaCompra(i); atualizarTotalCompra(); salvarRascunho(); return; }
+  if (e.target.name === 'prod'){
+    // produto escolhido: ajusta as unidades e vai para a marca
+    const a = alimPorNome(e.target.value);
+    if (a){
+      const l = cgLinhas[i], ops = opcoesUnidade(a);
+      const q = a.preco?.melhor ? Number(a.preco.melhor.quantidade) : null;   // pacote mais comum já registrado
+      const grande = q && ops[1] && q >= 1000;
+      l.un = grande ? ops[1][0] : ops[0][0];
+      if (!l.tam && q) l.tam = String(grande ? q / 1000 : q).replace('.', ',');
+    }
+    renderLinhasCompra();
+    $(`#cgLinhas .cl[data-i="${i}"] input[name=marca]`)?.focus();
+    salvarRascunho();
+  }
+});
+$('#cgLinhas').addEventListener('keydown', e => {
+  if (e.key !== 'Enter' || !e.target.matches('input')) return;
+  e.preventDefault();
+  const el = e.target.closest('.cl'), i = Number(el.dataset.i);
+  const campos = [...el.querySelectorAll('input:not([type=checkbox])')];
+  const j = campos.indexOf(e.target);
+  if (j < campos.length - 1) campos[j + 1].focus();
+  else if (i === cgLinhas.length - 1){ $('#cgAddLinha').click(); }
+  else $(`#cgLinhas .cl[data-i="${i + 1}"] input[name=prod]`)?.focus();
+});
+$('#cgLinhas').addEventListener('click', e => {
+  if (!e.target.closest('[data-tirarlinha]')) return;
+  cgLinhas.splice(Number(e.target.closest('.cl').dataset.i), 1);
+  if (!cgLinhas.length) cgLinhas.push(novaLinhaCompra());
+  renderLinhasCompra();
+  salvarRascunho();
+});
+$('#cgAddLinha').addEventListener('click', () => {
+  const ult = cgLinhas[cgLinhas.length - 1];
+  cgLinhas.push({ ...novaLinhaCompra(), marca: '' });
+  renderLinhasCompra();
+  $(`#cgLinhas .cl[data-i="${cgLinhas.length - 1}"] input[name=prod]`)?.focus();
+  salvarRascunho();
+});
+$('#cgMercado').addEventListener('change', e => {
+  if (e.target.value === 'novo'){ e.target.value = ''; abrirNovoMercado(false); return; }
+  salvarRascunho();
+});
+formCompra.data.addEventListener('change', salvarRascunho);
+$('#cgNovoAlim').addEventListener('click', () => abrirNovo());
+$('#cgDescartar').addEventListener('click', () => {
+  if (!confirm('Descartar todos os produtos desta compra?')) return;
+  try { localStorage.removeItem(chaveCompra()); } catch {}
+  cgLinhas = [novaLinhaCompra(), novaLinhaCompra(), novaLinhaCompra()];
+  renderLinhasCompra();
+});
+
+formCompra.addEventListener('submit', async e => {
+  e.preventDefault();
+  const registrar = formCompra.precos.checked;
+  const inventario = usarInventario() && formCompra.inventario.checked;
+  const mercado = Number(formCompra.mercado.value);
+  if (!registrar && !inventario) return erroForm('#erroCompra', 'Escolha registrar os preços e/ou somar ao inventário.');
+  if (registrar && !mercado) return erroForm('#erroCompra', 'Escolha o mercado.');
+
+  const validas = [];
+  let problemas = 0;
+  cgLinhas.forEach((l, i) => {
+    const el = $(`#cgLinhas .cl[data-i="${i}"]`);
+    if (!l.prod && !l.tam && !l.preco) return;   // linha em branco: ignora
+    const c = calcLinha(l);
+    const prob = !c.a ? 'Escolha um produto da lista.' : !(c.pac > 0) ? 'Informe quantos pacotes.' : !(c.tam > 0) ? 'Informe o tamanho do pacote.'
+      : registrar && !(c.preco > 0) ? 'Informe o preço do pacote.' : null;
+    if (prob){ problemas++; el.classList.add('erro'); const info = el.querySelector('[data-info]'); info.style.color = 'var(--erro)'; info.textContent = prob; return; }
+    validas.push({ ...c, marca: l.marca.trim(), promo: !!l.promo });
+  });
+  if (problemas) return erroForm('#erroCompra', `Corrija ${plural(problemas, 'linha marcada', 'linhas marcadas')} em vermelho.`);
+  if (!validas.length) return erroForm('#erroCompra', 'Adicione pelo menos um produto.');
+  if (registrar && validas.some(v => v.promo) && estado.promosErro) return erroForm('#erroCompra', 'Para registrar promoções, rode o script supabase_promocoes.sql. Ou desmarque o 🔥 das linhas.');
+
+  const btn = $('#btnSalvarCompra');
+  btn.disabled = true; btn.textContent = 'Salvando…';
+  const r2 = v => Math.round(v * 100) / 100;
+  try {
+    // marcas novas são criadas uma vez só
+    const idsMarca = new Map();
+    for (const v of validas){
+      if (!v.marca) continue;
+      const chave = norm(v.marca);
+      if (idsMarca.has(chave)) continue;
+      const existe = estado.marcas.find(m => norm(m.nome) === chave);
+      idsMarca.set(chave, existe ? existe.id : (await api.inserir('marcas', { nome: v.marca }))[0].id);
+    }
+    const data = formCompra.data.value || hoje();
+    if (registrar){
+      const base = v => ({ alimento_id: v.a.id, mercado_id: mercado, marca_id: v.marca ? idsMarca.get(norm(v.marca)) : null, preco: r2(v.preco), quantidade: r2(v.tam), data });
+      const normais = validas.filter(v => !v.promo).map(base);
+      const promos = validas.filter(v => v.promo).map(v => ({ ...base(v), valida_ate: somarDias(data, 2) }));
+      if (normais.length) await api.inserir('precos', normais);
+      if (promos.length) await api.inserir('promocoes', promos);
+    }
+    if (inventario){
+      const soma = new Map();
+      validas.forEach(v => soma.set(v.a.id, (soma.get(v.a.id) || 0) + v.pac * v.tam));
+      for (const [id, q] of soma) await api.registrarCompra(id, r2(q));
+    }
+    const total = validas.reduce((t, v) => t + (v.sub || 0), 0);
+    try { localStorage.removeItem(chaveCompra()); } catch {}
+    $('#dlgCompra').close();
+    await carregar();
+    setStatus(`🧾 Compra salva: ${plural(validas.length, 'produto', 'produtos')}${total ? `, total ${brl(total)}` : ''}`, 'ok');
+  } catch (err){
+    erroForm('#erroCompra', `Não foi possível salvar tudo: ${err.message} Confira na aba Preços o que já entrou antes de tentar de novo.`);
+  } finally {
+    btn.disabled = false; btn.textContent = 'Salvar compra';
+  }
 });
 
 /* ===== ROTINAS ===== */
@@ -4992,6 +5488,7 @@ function setStatus(txt, tipo){ const s = $('#status'); s.textContent = txt; s.cl
 $('#btnAtualizar').onclick = carregar;
 $('#btnNovo').onclick = () => abrirNovo();
 $('#btnRegistrar').onclick = () => abrirRegistrar();
+$('#btnCompraGrande').onclick = () => abrirCompra();
 $('#btnNovoMercado').onclick = () => abrirNovoMercado(false);
 document.querySelectorAll('.aba').forEach(b => b.addEventListener('click', () => { if (!ignorarClique) mudarAba(b.dataset.aba); }));
 
@@ -5046,6 +5543,9 @@ $('#detalhe').addEventListener('click', e => {
   if (em){ abrirFormMarca(estado.aberto, em.dataset.editarmarca ? Number(em.dataset.editarmarca) : null); return; }
   const am = e.target.closest('[data-apagarmarca]');
   if (am){ apagarTabelaMarca(Number(am.dataset.apagarmarca)); return; }
+  if (e.target.closest('[data-comparar]')){ const k = estado.aberto; $('#detalhe').close(); abrirComparar(k, null); return; }
+  const cm = e.target.closest('[data-cmpmarca]');
+  if (cm){ const k = estado.aberto; $('#detalhe').close(); abrirComparar(k, Number(cm.dataset.cmpmarca)); return; }
   if (e.target.closest('[data-editaralim]')){ const k = estado.aberto; $('#detalhe').close(); abrirNovo(k); return; }
   if (e.target.closest('[data-apagaralim]')){ apagarAlimento(achar(estado.aberto)); return; }
   if (e.target.closest('[data-adddia]')){ const k = estado.aberto; $('#detalhe').close(); abrirAddDiario(null, k, num($('#detQtd')?.value)); return; }
