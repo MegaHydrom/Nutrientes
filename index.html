@@ -839,6 +839,61 @@
     .compra-cab{grid-template-columns:1fr}
   }
 
+  /* ===== NOVIDADES ===== */
+  .aviso-versao{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:0 0 16px;padding:12px 16px;border-radius:14px;background:var(--painel);color:var(--creme)}
+  .aviso-versao b{color:var(--lima)}
+  .aviso-versao span{flex:1;min-width:200px}
+  .aviso-versao .btn{background:var(--lima);border-color:var(--lima);color:var(--verde-escuro)}
+  .aviso-versao .fechar{background:transparent;border-color:rgba(255,255,255,.3);color:var(--creme)}
+  .versoes{display:flex;flex-direction:column;gap:8px;margin-top:14px}
+  .versao{border:1px solid var(--linha);border-radius:12px;padding:0}
+  .versao summary{display:flex;align-items:baseline;gap:10px;padding:12px 14px;list-style:none;cursor:pointer;color:var(--tinta);font-size:1rem}
+  .versao summary::-webkit-details-marker{display:none}
+  .versao summary b{font-size:1.05rem}
+  .versao summary small{color:var(--suave);font-weight:500}
+  .versao ul{margin:0;padding:0 14px 14px 34px;font-size:.9rem;line-height:1.55}
+  .versao.atual{border-color:var(--kcal)}
+  .tag-atual{font-size:.66rem;font-weight:800;color:var(--sup);background:var(--kcal);border-radius:4px;padding:1px 6px}
+
+  /* ===== EXPORTAR PARA IA ===== */
+  .exp-opcoes{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:16px}
+  .exp-chks{display:flex;flex-direction:column;gap:4px;margin-top:4px}
+  .exp-saida{width:100%;min-height:220px;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.78rem;line-height:1.45;margin-top:12px;white-space:pre;overflow:auto}
+  .exp-info{font-size:.82rem;color:var(--suave);margin-top:6px}
+  @media (max-width:520px){ .exp-opcoes{grid-template-columns:1fr} }
+
+  /* ===== PET ===== */
+  .pet-card{all:unset;box-sizing:border-box;cursor:pointer;display:flex;align-items:center;gap:14px;width:100%;margin-bottom:12px;padding:10px 16px 10px 10px;border-radius:20px;border:1px solid var(--linha);background:var(--sup)}
+  .pet-card:hover{border-color:var(--borda-hover)}
+  .pet-card:focus-visible{outline:2px solid var(--prot);outline-offset:2px}
+  .pet-mini{width:76px;height:76px;flex:none;border-radius:16px;background:var(--verde-claro);display:grid;place-items:center}
+  .pet-mini svg{width:68px;height:68px}
+  .pet-info{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}
+  .pet-info b{font-size:1.05rem}
+  .pet-info small{font-size:.78rem;color:var(--suave)}
+  .pet-humor{font-size:.9rem}
+  .pet-xp{height:6px;border-radius:3px;background:var(--fundo);overflow:hidden;margin:4px 0 2px;max-width:280px}
+  .pet-xp i{display:block;height:100%;background:var(--kcal);border-radius:3px}
+  .pet-vida{font-size:.85rem;letter-spacing:1px;white-space:nowrap}
+  .pet-grande{display:grid;place-items:center;margin:8px auto 4px;width:200px;height:200px;border-radius:32px;background:var(--verde-claro)}
+  .pet-grande svg{width:180px;height:180px}
+  .pet svg .corpo{animation:pet-bob 3.2s ease-in-out infinite;transform-origin:60px 92px}
+  @keyframes pet-bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-2.5px)}}
+  .pet-estagios{display:flex;justify-content:space-between;gap:4px;margin:14px 0 4px;font-size:.72rem;color:var(--suave);text-align:center}
+  .pet-estagios span{flex:1}
+  .pet-estagios span.feito{color:var(--kcal);font-weight:700}
+  .pet-check{list-style:none;margin:10px 0 0;padding:0;display:flex;flex-direction:column;gap:6px}
+  .pet-check li{display:flex;align-items:center;gap:10px;padding:8px 12px;border-radius:10px;background:var(--fundo);font-size:.9rem}
+  .pet-check li b{margin-left:auto;font-variant-numeric:tabular-nums}
+  .pet-check li.ok{background:var(--verde-claro)}
+  .pet-check li.ok b{color:var(--kcal)}
+  .pet-semana{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;height:80px;align-items:end;margin-top:10px}
+  .pet-semana div{display:flex;flex-direction:column;align-items:center;gap:4px;height:100%;justify-content:flex-end}
+  .pet-semana i{width:100%;max-width:26px;border-radius:4px 4px 0 0;background:var(--barra-neutra);min-height:2px}
+  .pet-semana i.bom{background:var(--kcal)}
+  .pet-semana small{font-size:.68rem;color:var(--suave)}
+  @media (prefers-reduced-motion:reduce){ .pet svg .corpo{animation:none} }
+
   /* ===== LOGIN ===== */
   .login{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:28px;padding:32px 16px;background:var(--verde-escuro)}
   .login-marca{text-align:center;color:var(--creme)}
@@ -958,6 +1013,8 @@
       </button>
     </div>
   </header>
+
+  <div class="aviso-versao" id="avisoVersao" hidden></div>
 
   <nav class="abas" role="tablist" aria-label="Seções">
     <button class="aba" role="tab" id="tab-alimentos" data-aba="alimentos" aria-controls="abaAlimentos" aria-selected="true">Alimentos</button>
@@ -1458,6 +1515,57 @@
   </form>
 </dialog>
 
+<!-- Novidades -->
+<dialog id="dlgNovidades" aria-labelledby="novTitulo">
+  <div class="det">
+    <div class="det-topo">
+      <div><h2 id="novTitulo">Novidades do AIKE</h2><p class="cat">O que entrou em cada versão</p></div>
+      <button class="fechar" type="button" data-fechar aria-label="Fechar">×</button>
+    </div>
+    <div class="versoes" id="listaVersoes"></div>
+  </div>
+</dialog>
+
+<!-- Exportar para IA -->
+<dialog id="dlgExportar" aria-labelledby="expTitulo">
+  <div class="det">
+    <div class="det-topo">
+      <div><h2 id="expTitulo">Exportar para IA</h2><p class="cat">Copie e cole numa IA para montar cardápios e receitas</p></div>
+      <button class="fechar" type="button" data-fechar aria-label="Fechar">×</button>
+    </div>
+    <div class="exp-opcoes">
+      <label class="campo">Cardápio de<select id="expDias"><option value="1">1 dia</option><option value="7">7 dias</option></select></label>
+      <label class="campo">Refeições por dia<select id="expRef"><option>3</option><option selected>4</option><option>5</option><option>6</option></select></label>
+      <label class="campo largo" style="grid-column:1/-1">Restrições e preferências <span style="font-weight:400;color:var(--suave)">(opcional)</span>
+        <input type="text" id="expRestr" maxlength="300" placeholder="Ex.: sem lactose, não gosto de peixe, almoço rápido">
+      </label>
+      <div class="campo" style="grid-column:1/-1">Incluir
+        <div class="exp-chks">
+          <label class="check" style="margin-top:0"><input type="checkbox" id="expPreco" checked><span>Só alimentos com preço registrado</span></label>
+          <label class="check" style="margin-top:0" id="expDespLinha"><input type="checkbox" id="expDesp" checked><span>O que tenho na Despensa</span></label>
+          <label class="check" style="margin-top:0"><input type="checkbox" id="expRec" checked><span>Minhas receitas</span></label>
+        </div>
+      </div>
+    </div>
+    <div class="seg" id="expFormato" role="group" aria-label="Formato" style="margin-top:16px">
+      <button type="button" data-fmt="texto" aria-pressed="true">Texto pronto para IA</button>
+      <button type="button" data-fmt="json" aria-pressed="false">Dados em JSON</button>
+    </div>
+    <textarea class="exp-saida" id="expSaida" readonly aria-label="Conteúdo exportado"></textarea>
+    <p class="exp-info" id="expInfo"></p>
+    <div class="rodape-det">
+      <span class="ok" id="expOk" aria-live="polite"></span>
+      <button class="btn" type="button" id="btnExpBaixar">Baixar arquivo</button>
+      <button class="btn primario" type="button" id="btnExpCopiar">Copiar</button>
+    </div>
+  </div>
+</dialog>
+
+<!-- Pet -->
+<dialog id="dlgPet" aria-labelledby="petTitulo">
+  <div class="det" id="petConteudo"></div>
+</dialog>
+
 <!-- Rotinas: lista -->
 <dialog id="dlgRotinas" aria-labelledby="rotTitulo">
   <div class="det">
@@ -1532,6 +1640,7 @@
       <button class="mais-op" type="button" data-acao="preco"><span class="emo">🏷️</span><span><b>Novo preço</b><small>Preço do pacote num mercado</small></span></button>
       <button class="mais-op" type="button" data-acao="compra"><span class="emo">🧾</span><span><b>Registrar compra</b><small>Vários produtos de uma vez, como na nota</small></span></button>
       <button class="mais-op" type="button" data-acao="comparar"><span class="emo">⚖️</span><span><b>Comparar produtos</b><small>Nutrientes e preços lado a lado</small></span></button>
+      <button class="mais-op" type="button" data-acao="exportar"><span class="emo">🤖</span><span><b>Exportar para IA</b><small>Monte cardápios que batem a meta pelo menor custo</small></span></button>
       <button class="mais-op" type="button" data-acao="promocao"><span class="emo">🔥</span><span><b>Nova promoção</b><small>Oferta que vale por pouco tempo</small></span></button>
       <button class="mais-op" type="button" data-acao="rotina"><span class="emo">🗓️</span><span><b>Nova rotina</b><small>Refeições planejadas do dia</small></span></button>
     </div>
@@ -1638,6 +1747,23 @@
 
     <h3 class="cfg-sec">Administrador</h3>
     <div id="cfgAdmin"></div>
+
+    <h3 class="cfg-sec">Pet</h3>
+    <label class="switch"><input type="checkbox" id="chkPet"><span>Mostrar o pet no Diário</span></label>
+    <div class="per-novo" style="margin-top:10px">
+      <input type="text" id="petNome" maxlength="24" placeholder="Nome do pet" aria-label="Nome do pet">
+      <button class="btn" type="button" id="btnPetNome">Salvar nome</button>
+    </div>
+
+    <h3 class="cfg-sec">Exportar dados</h3>
+    <p class="ajuda" style="margin-bottom:10px">Gera um arquivo com suas metas, alimentos, marcas e preços, pronto para colar numa IA e pedir cardápios e receitas que batam a meta pelo menor custo.</p>
+    <button class="btn" type="button" id="btnCfgExportar">🤖 Exportar para IA</button>
+
+    <h3 class="cfg-sec">Sobre o AIKE</h3>
+    <div class="conta">
+      <span>Versão <b id="cfgVersao"></b></span>
+      <button class="btn" type="button" id="btnNovidades">Ver novidades</button>
+    </div>
 
     <h3 class="cfg-sec">Conta</h3>
     <div class="conta">
@@ -4016,6 +4142,7 @@ async function carregarDiario(){
     const [itens, semana] = await Promise.all([api.diario(d), api.diarioPeriodo(somarDias(d, -6), somarDias(d, 1))]);
     if (d !== estado.diaData) return; // trocou de dia enquanto carregava
     estado.diario = itens || [];
+    if (estado.petCarregado) estado.petHist.set(d, estado.diario.slice());   // pet sempre com o dia mais recente
     estado.diarioSemana = semana || [];
     estado.diarioErro = null;
   } catch (e){
@@ -4255,7 +4382,7 @@ function renderDiario(){
 
   box.innerHTML = `
     <div class="dia-grade">
-      <div>${calCard}${macros}${lista}</div>
+      <div>${petCardHTML()}${calCard}${macros}${lista}</div>
       <aside class="ref-rotulo">${semana}${rot}</aside>
     </div>`;
 }
@@ -4356,6 +4483,7 @@ $('#dlgMais').addEventListener('click', e => {
     },
     compra: () => { if (estado.precosErro){ mudarAba('precos'); return; } abrirCompra(); },
     comparar: () => abrirComparar(),
+    exportar: () => abrirExportar(),
     rotina: () => {
       if (estado.rotinasErro){ mudarAba('diario'); setStatus('Rode o script supabase_rotinas.sql para usar rotinas', 'erro'); return; }
       abrirFormRotina();
@@ -4375,6 +4503,7 @@ $('#diaConteudo').addEventListener('click', e => {
   if (dia){ mudarDia(dia.dataset.dia); return; }
   if (e.target.closest('[data-cfg]')){ abrirConfig(); return; }
   if (e.target.closest('[data-rotinas]')){ abrirRotinas(); return; }
+  if (e.target.closest('[data-pet]')){ abrirPet(); return; }
   if (e.target.closest('[data-marcartudo]')){ marcarTudo(); return; }
   if (e.target.closest('[data-chk]')){ alternarFeito(Number(e.target.closest('[data-id]').dataset.id)); return; }
   if (e.target.closest('[data-trocar]')){
@@ -5046,6 +5175,383 @@ formCompra.addEventListener('submit', async e => {
     btn.disabled = false; btn.textContent = 'Salvar compra';
   }
 });
+
+/* ===== NOVIDADES ===== */
+const APP_VERSAO = '3.0';
+const VERSOES = [
+  ['3.0', 'Pet, exportar para IA e novidades', [
+    '🌱 Pet no Diário: ele cresce com os seus dias na meta (semente, broto, muda, planta, árvore e árvore com frutos) e muda de humor com o seu progresso.',
+    '🤖 Exportar para IA: metas, alimentos, marcas, preços, promoções, despensa e receitas num texto pronto para pedir cardápios pelo menor custo.',
+    '📋 Novidades por versão em Configurações > Sobre o AIKE.']],
+  ['2.9', 'Marca no diário e edição de preços', [
+    'Escolha a marca ao registrar no diário: os nutrientes vêm da tabela da marca.',
+    'Editar e apagar preços e promoções do histórico; renomear e apagar marcas.']],
+  ['2.8', 'Comparar produtos e compra grande', [
+    'Comparar até 4 alimentos ou marcas por 100 g, por pacote ou pelo que R$ 10 compram.',
+    'Registrar uma compra inteira de uma vez, com rascunho automático e soma ao inventário.']],
+  ['2.7', 'Nova identidade: AIKE', ['Novo nome, logo, cores, tipografia Inter e ícone.']],
+  ['2.6', 'App online e instalável', ['Publicação no GitHub Pages e instalação na tela inicial do celular.']],
+  ['2.5', 'Despensa', ['Inventário com baixa automática pelo diário e lista de compras que se preenche sozinha.']],
+  ['2.4', 'Marcas e compra online', ['Tabela nutricional por marca dentro de cada alimento.', 'Compra online com link do produto.']],
+  ['2.3', 'Rotinas alimentares', ['Rotinas com períodos próprios, itens planejados, check de refeição feita e troca de itens.']],
+  ['2.2', 'Promoções e notificações', ['Promoções separadas do histórico, sininho de notificações e gráfico da evolução dos preços.']],
+  ['2.1', 'Botão + e origem dos valores', ['Botão + em todas as abas.', 'Marcar se os valores vieram do rótulo ou são estimados.']],
+  ['2.0', 'Novo diário e emojis', ['Diário com arco de calorias, cartões de macros e metas de macros.', 'Emojis automáticos e escolhidos para cada alimento.']],
+  ['1.9', 'Aparência', ['Cores de destaque, tamanho do texto, espaçamento, lista em cartões e abas ocultas.']],
+  ['1.8', 'Administrador', ['Modo administrador por código e reorganização das abas.']],
+  ['1.7', 'Diário', ['Diário por dia e por refeição, comparado com a meta.']],
+  ['1.6', 'Receitas', ['Receitas públicas ou privadas, com nutrientes e custo por porção.']],
+  ['1.5', 'Login e perfil', ['Contas com e-mail e senha, taxa metabólica basal e modo escuro.']],
+  ['1.4', 'Preço por pacote', ['Cada tamanho de pacote como uma oferta, com destaque para o preço inteiro.']],
+  ['1.3', 'Preços e mercados', ['Registro de preços por mercado e comparação de custo-benefício.']],
+  ['1.2', 'Refeição', ['Calculadora de refeição e ordenação por nutrientes.']],
+  ['1.1', 'Banco de dados', ['Dados no Supabase e cadastro de alimentos pelo app.']],
+  ['1.0', 'Primeira versão', ['Lista de alimentos com a tabela nutricional completa.']],
+];
+const CHAVE_VERSAO = 'aike_versao_vista';
+function renderNovidades(){
+  $('#listaVersoes').innerHTML = VERSOES.map(([v, t, itens], i) => `<details class="versao${i === 0 ? ' atual' : ''}"${i === 0 ? ' open' : ''}>
+    <summary><b>${v}</b><small>${esc(t)}</small>${i === 0 ? '<span class="tag-atual">atual</span>' : ''}</summary>
+    <ul>${itens.map(x => `<li>${esc(x)}</li>`).join('')}</ul>
+  </details>`).join('');
+}
+function abrirNovidades(){
+  renderNovidades();
+  marcarVersaoVista();
+  $('#dlgNovidades').showModal();
+}
+function marcarVersaoVista(){
+  try { localStorage.setItem(CHAVE_VERSAO, APP_VERSAO); } catch {}
+  $('#avisoVersao').hidden = true;
+}
+function verificarVersao(){
+  let vista = null;
+  try { vista = localStorage.getItem(CHAVE_VERSAO); } catch {}
+  if (vista === APP_VERSAO) return;
+  const [v, t] = VERSOES[0];
+  $('#avisoVersao').innerHTML = `<span>🎉 <b>AIKE ${v}</b> chegou: ${esc(t.toLowerCase())}.</span>
+    <button class="btn" type="button" data-vernovidades>Ver novidades</button>
+    <button class="fechar" type="button" data-fecharaviso aria-label="Fechar aviso">×</button>`;
+  $('#avisoVersao').hidden = false;
+}
+$('#avisoVersao').addEventListener('click', e => {
+  if (e.target.closest('[data-vernovidades]')) abrirNovidades();
+  else if (e.target.closest('[data-fecharaviso]')) marcarVersaoVista();
+});
+$('#btnNovidades').addEventListener('click', abrirNovidades);
+
+/* ===== PET ===== */
+const PET_ESTAGIOS = [[0, 'Semente'], [200, 'Broto'], [700, 'Muda'], [1600, 'Planta'], [3000, 'Árvore'], [5000, 'Árvore com frutos']];
+const DIA_BOM = 70;   // pontos para o dia contar como "na meta"
+estado.petHist = new Map();
+estado.petCarregado = false;
+
+async function carregarPet(){
+  if (prefs.pet === false || !auth.sessao) return;
+  const de = somarDias(hoje(), -365);
+  const linhas = [];
+  try {
+    for (let offset = 0; offset < 20000; offset += 1000){
+      const r = await supabase(`diario?select=data,kcal,proteinas,feito&data=gte.${de}&order=data.asc&limit=1000&offset=${offset}`);
+      linhas.push(...(r || []));
+      if (!r || r.length < 1000) break;
+    }
+    const mapa = new Map();
+    linhas.forEach(x => { const d = String(x.data).slice(0, 10); if (!mapa.has(d)) mapa.set(d, []); mapa.get(d).push(x); });
+    if (estado.diaData) mapa.set(estado.diaData, estado.diario.slice());
+    estado.petHist = mapa;
+    estado.petCarregado = true;
+  } catch { estado.petCarregado = false; }
+  renderDiario();
+}
+
+// Pontos de um dia (0 a 100)
+function pontuarDia(rows, meta, alvo){
+  const feitos = (rows || []).filter(x => x.feito !== false);
+  const kcal = feitos.reduce((t, x) => t + (Number(x.kcal) || 0), 0);
+  const prot = feitos.reduce((t, x) => t + (Number(x.proteinas) || 0), 0);
+  const pct = kcal / meta;
+  const desvio = Math.abs(pct - 1);
+  const itens = [
+    { t: 'Calorias na meta (±10%)', max: 40, pts: feitos.length ? (desvio <= 0.10 ? 40 : desvio <= 0.20 ? 20 : 0) : 0 },
+    { t: 'Proteína acima de 90% da meta', max: 30, pts: prot >= alvo.prot * 0.9 ? 30 : prot >= alvo.prot * 0.7 ? 15 : 0 },
+    { t: '3 registros ou mais', max: 20, pts: feitos.length >= 3 ? 20 : feitos.length >= 1 ? 10 : 0 },
+    { t: 'Nada planejado ficou sem check', max: 10, pts: feitos.length && !(rows || []).some(x => x.feito === false) ? 10 : 0 },
+  ];
+  return { itens, total: itens.reduce((t, i) => t + i.pts, 0), kcal, prot, pct, feitos: feitos.length };
+}
+
+function estadoPet(){
+  const m = auth.perfil ? metabolismo(auth.perfil) : null;
+  if (!m) return null;
+  const alvo = metasMacros(m.meta), hj = hoje();
+  const rowsDe = d => d === estado.diaData ? estado.diario : (estado.petHist.get(d) || []);
+  const pts = d => pontuarDia(rowsDe(d), m.meta, alvo).total;
+  let xp = 0;
+  estado.petHist.forEach((_, d) => { if (d <= hj && d !== estado.diaData) xp += pts(d); });
+  if (estado.diaData && estado.diaData <= hj) xp += pts(estado.diaData);
+  let streak = 0, d = pts(hj) >= DIA_BOM ? hj : somarDias(hj, -1);
+  while (streak < 400 && pts(d) >= DIA_BOM){ streak++; d = somarDias(d, -1); }
+  const semana = Array.from({ length: 7 }, (_, i) => somarDias(hj, i - 6)).map(x => ({ d: x, pts: pts(x) }));
+  const vida = Math.round(semana.reduce((t, x) => t + x.pts, 0) / 7 / 20);
+  let est = 0;
+  PET_ESTAGIOS.forEach(([lim], i) => { if (xp >= lim) est = i; });
+  const prox = PET_ESTAGIOS[est + 1]?.[0] ?? null;
+  const dia = pontuarDia(rowsDe(hj), m.meta, alvo);
+  return { xp, nivel: Math.floor(xp / 100) + 1, est, prox, ini: PET_ESTAGIOS[est][0], streak, vida, semana, dia, humor: humorPet(dia), meta: m.meta };
+}
+
+function humorPet(h){
+  if (!h.feitos) return ['fome', 'Estou com fome… registre a primeira refeição de hoje'];
+  if (h.pct < 0.5) return ['fome', 'Ainda estou com fome'];
+  if (h.pct < 0.9) return ['ok', 'Tô bem, mas ainda cabe mais um pouquinho'];
+  if (h.pct <= 1.1) return ['feliz', h.itens[1].pts === 30 ? 'Dia perfeito! Estou radiante' : 'Que bom! Só capricha mais na proteína'];
+  if (h.pct <= 1.2) return ['ok', 'Passou um pouquinho, mas tudo bem'];
+  return ['cheio', 'Ufa… comi demais hoje'];
+}
+
+// Desenho do pet (um broto no vaso) conforme o estágio e o humor
+function petSVG(est, humor, brilho){
+  const r = [10, 14, 17, 19, 21, 22][est];
+  const cy = 86 - r + 3;
+  const corpo = humor === 'fome' ? '#BFD18A' : '#9BD34B';
+  const folha = (rot, esc = 1, espelho = false) => `<path d="M0 0C0-9 6-15 16-16c0 9-6 16-16 16z" fill="#2E7D32" transform="translate(60 ${cy - r + 2})${espelho ? ' scale(-1 1)' : ''} rotate(${rot}) scale(${esc})"/>`;
+  const folhas = est >= 4 ? '' : [
+    est >= 1 ? folha(-15) : '',
+    est >= 2 ? folha(-15, 0.85, true) : '',
+    est >= 3 ? folha(-58, 0.8) : '',
+  ].join('') + (est === 0 ? `<path d="M60 ${cy - r + 1}c0-5 3-8 7-9" fill="none" stroke="#2E7D32" stroke-width="2.4" stroke-linecap="round"/>` : '');
+  const copa = est >= 4 ? `<circle cx="60" cy="${cy - r - 10}" r="${est === 5 ? 30 : 27}" fill="#2E7D32"/><circle cx="48" cy="${cy - r - 16}" r="12" fill="#3F9142"/>`
+    + (est === 5 ? [[44, -6], [70, -20], [76, -2], [56, -28], [38, -22]].map(([x, y]) => `<circle cx="${x}" cy="${cy - r - 10 + y}" r="4.2" fill="#F57C2B"/>`).join('') : '') : '';
+  const ex = r * 0.38, ey = cy - r * 0.12;
+  let olhos, boca, extra = '';
+  if (humor === 'cheio'){
+    olhos = `<path d="M${60 - ex - 3} ${ey - 2}l4 2-4 2M${60 + ex + 3} ${ey - 2}l-4 2 4 2" fill="none" stroke="#14301F" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>`;
+    boca = `<path d="M${60 - 6} ${cy + r * 0.35}q3-3 6 0t6 0" fill="none" stroke="#14301F" stroke-width="1.8" stroke-linecap="round"/>`;
+  } else {
+    olhos = `<ellipse cx="${60 - ex}" cy="${ey}" rx="2.2" ry="${humor === 'fome' ? 2 : 2.8}" fill="#14301F"/><ellipse cx="${60 + ex}" cy="${ey}" rx="2.2" ry="${humor === 'fome' ? 2 : 2.8}" fill="#14301F"/>`;
+    if (humor === 'fome'){
+      boca = `<ellipse cx="60" cy="${cy + r * 0.38}" rx="2.6" ry="3" fill="#14301F"/>`;
+      // sobrancelhas tristes: o lado de dentro fica mais alto
+      extra = `<path d="M${60 - ex - 4} ${ey - 4}l6-3M${60 + ex + 4} ${ey - 4}l-6-3" stroke="#14301F" stroke-width="1.6" stroke-linecap="round"/>`;
+    } else {
+      const larg = humor === 'feliz' ? 6 : 4, fundo = humor === 'feliz' ? 6 : 3;
+      boca = `<path d="M${60 - larg} ${cy + r * 0.25}q${larg} ${fundo} ${larg * 2} 0" fill="none" stroke="#14301F" stroke-width="2" stroke-linecap="round"/>`;
+      if (humor === 'feliz') extra = `<circle cx="${60 - ex - 4}" cy="${ey + 5}" r="2.6" fill="#F57C2B" opacity=".45"/><circle cx="${60 + ex + 4}" cy="${ey + 5}" r="2.6" fill="#F57C2B" opacity=".45"/>`;
+    }
+  }
+  const estrelas = brilho ? [[22, 30], [96, 42], [30, 62]].map(([x, y]) => `<path d="M${x} ${y - 5}l1.5 3.5 3.5 1.5-3.5 1.5L${x} ${y + 5}l-1.5-3.5-3.5-1.5 3.5-1.5z" fill="#F5B82B"/>`).join('') : '';
+  return `<svg viewBox="0 0 120 120" aria-hidden="true">
+    ${estrelas}
+    <g class="corpo">${copa}${folhas}<circle cx="60" cy="${cy}" r="${r}" fill="${corpo}"/>${olhos}${boca}${extra}</g>
+    <ellipse cx="60" cy="90" rx="25" ry="4" fill="#5B3A1E" opacity=".35"/>
+    <path d="M36 92h48l-6 22H42z" fill="#F57C2B"/><rect x="32" y="86" width="56" height="9" rx="4" fill="#E06A1F"/>
+  </svg>`;
+}
+
+const coracoes = n => '❤️'.repeat(Math.max(0, Math.min(5, n))) + '🤍'.repeat(5 - Math.max(0, Math.min(5, n)));
+
+function petCardHTML(){
+  if (prefs.pet === false || !auth.sessao) return '';
+  const e = estadoPet();
+  const nome = esc(prefs.petNome || 'Folhinha');
+  if (!e) return `<button class="pet-card" type="button" data-cfg><span class="pet pet-mini">${petSVG(0, 'ok', false)}</span>
+    <span class="pet-info"><b>${nome}</b><span class="pet-humor">Defina sua meta nas Configurações para eu poder crescer</span></span></button>`;
+  const faixa = e.prox ? (e.xp - e.ini) / (e.prox - e.ini) * 100 : 100;
+  return `<button class="pet-card" type="button" data-pet aria-label="Ver o pet ${nome}">
+    <span class="pet pet-mini">${petSVG(e.est, e.humor[0], e.streak >= 3)}</span>
+    <span class="pet-info">
+      <b>${nome} <small>${PET_ESTAGIOS[e.est][1]}, nível ${e.nivel}</small></b>
+      <span class="pet-humor">${esc(e.humor[1])}</span>
+      <span class="pet-xp" aria-hidden="true"><i style="width:${faixa}%"></i></span>
+      <small>${e.prox ? `${e.xp - e.ini} de ${e.prox - e.ini} XP para ${PET_ESTAGIOS[e.est + 1][1].toLowerCase()}` : 'Estágio máximo!'}${e.streak ? ` · 🔥 ${plural(e.streak, 'dia seguido', 'dias seguidos')}` : ''}</small>
+    </span>
+    <span class="pet-vida" title="Saúde pelos últimos 7 dias">${coracoes(e.vida)}</span>
+  </button>`;
+}
+
+function abrirPet(){
+  const e = estadoPet();
+  if (!e) return;
+  const nome = esc(prefs.petNome || 'Folhinha');
+  $('#petConteudo').innerHTML = `
+    <div class="det-topo">
+      <div><h2 id="petTitulo">${nome}</h2><p class="cat">${PET_ESTAGIOS[e.est][1]}, nível ${e.nivel}, ${e.xp} XP</p></div>
+      <button class="fechar" type="button" data-fechar aria-label="Fechar">×</button>
+    </div>
+    <div class="pet pet-grande">${petSVG(e.est, e.humor[0], e.streak >= 3)}</div>
+    <p style="text-align:center;margin:6px 0 2px;font-weight:600">${esc(e.humor[1])}</p>
+    <p style="text-align:center;margin:0;font-size:.9rem;color:var(--suave)">${coracoes(e.vida)} saúde${e.streak ? ` · 🔥 ${plural(e.streak, 'dia seguido', 'dias seguidos')} na meta` : ''}</p>
+    <div class="pet-estagios">${PET_ESTAGIOS.map(([lim, n], i) => `<span class="${i <= e.est ? 'feito' : ''}">${n}<br>${lim} XP</span>`).join('')}</div>
+    <div class="pet-xp" style="max-width:none" aria-hidden="true"><i style="width:${e.prox ? (e.xp - e.ini) / (e.prox - e.ini) * 100 : 100}%"></i></div>
+
+    <div class="secao"><h3>Hoje: ${e.dia.total} de 100 pontos</h3>
+      <ul class="pet-check">${e.dia.itens.map(i => `<li class="${i.pts === i.max ? 'ok' : ''}">${i.pts === i.max ? '✅' : i.pts ? '🟡' : '⬜'} ${i.t}<b>${i.pts}/${i.max}</b></li>`).join('')}</ul>
+    </div>
+    <div class="secao"><h3>Últimos 7 dias</h3>
+      <div class="pet-semana">${e.semana.map(x => `<div><i class="${x.pts >= DIA_BOM ? 'bom' : ''}" style="height:${Math.max(2, x.pts)}%" title="${dataLonga(x.d)}: ${x.pts} pontos"></i><small>${diaCurto(x.d)}</small></div>`).join('')}</div>
+    </div>
+    <details class="hist"><summary>Como funciona</summary>
+      <p class="ajuda" style="margin-top:8px">Cada dia vale até 100 pontos, que viram experiência (XP) e fazem o ${nome} crescer. Um dia com ${DIA_BOM} pontos ou mais conta para os dias seguidos e deixa o ${nome} brilhando a partir de 3 dias. A saúde (corações) é a média dos últimos 7 dias. A meta usada é a atual das Configurações.</p>
+    </details>
+    <div class="rodape-det"><button class="btn" type="button" data-renomearpet>Renomear</button></div>`;
+  const d = $('#dlgPet');
+  if (!d.open) d.showModal();
+}
+$('#dlgPet').addEventListener('click', e => {
+  if (!e.target.closest('[data-renomearpet]')) return;
+  const novo = (prompt('Nome do pet:', prefs.petNome || 'Folhinha') || '').trim().slice(0, 24);
+  if (novo){ aplicarPrefs({ ...prefs, petNome: novo }); abrirPet(); }
+});
+$('#chkPet').addEventListener('change', e => {
+  aplicarPrefs({ ...prefs, pet: e.target.checked });
+  if (e.target.checked && !estado.petCarregado) carregarPet();
+});
+$('#btnPetNome').addEventListener('click', () => {
+  const novo = $('#petNome').value.trim().slice(0, 24);
+  if (novo){ aplicarPrefs({ ...prefs, petNome: novo }); setStatus(`O pet agora se chama ${novo}`, 'ok'); }
+});
+
+/* ===== EXPORTAR PARA IA ===== */
+let expFmt = 'texto';
+const r2 = v => v === null || v === undefined || isNaN(v) ? null : Math.round(Number(v) * 100) / 100;
+const CAMPOS_EXP = [['calorias', 'kcal'], ['proteinas', 'proteinas_g'], ['carboidratos', 'carboidratos_g'], ['gorduras_totais', 'gorduras_g'],
+  ['acucares', 'acucares_g'], ['fibras', 'fibras_g'], ['gorduras_saturadas', 'gorduras_saturadas_g'], ['sodio', 'sodio_mg']];
+function nutriExp(pega){
+  const o = {};
+  CAMPOS_EXP.forEach(([c, k]) => { const v = pega(c); if (v !== null && v !== undefined) o[k] = r2(v); });
+  return o;
+}
+const ofertaExp = (o, a) => o ? { preco_pacote: r2(o.preco), pacote: tamTxt(Number(o.quantidade), a), preco_por_medida: r2(o.porBase), mercado: o.mercado, marca: o.marca || null } : null;
+
+function objetoExportacao(){
+  const m = auth.perfil ? metabolismo(auth.perfil) : null;
+  const alvo = m ? metasMacros(m.meta) : null;
+  const soPreco = $('#expPreco').checked;
+  const alims = estado.alimentos.filter(a => !soPreco || a.preco).sort((x, y) => x.nome.localeCompare(y.nome, 'pt-BR'));
+  const objetivo = { perder: 'perder peso', manter: 'manter o peso', ganhar: 'ganhar massa' }[auth.perfil?.objetivo] || null;
+  return {
+    gerado_em: new Date().toISOString(),
+    app: `AIKE ${APP_VERSAO}`,
+    pedido: { dias: Number($('#expDias').value), refeicoes_por_dia: Number($('#expRef').value), restricoes: $('#expRestr').value.trim() || null },
+    metas_diarias: m ? { calorias_kcal: Math.round(m.meta), proteinas_g: Math.round(alvo.prot), carboidratos_g: Math.round(alvo.carb), gorduras_g: Math.round(alvo.gord), objetivo } : null,
+    alimentos: alims.map(a => ({
+      nome: a.nome, categoria: a.categoria || null, medida: a.unidade === 'un' ? '1 unidade' : `100 ${a.unidade}`,
+      valores: a.origem === 'estimado' ? 'estimados' : a.origem === 'rotulo' ? 'do rótulo' : null,
+      nutrientes: nutriExp(c => valorGenerico(a, c)),
+      melhor_preco: ofertaExp(a.preco?.melhor, a),
+      pacotes: (a.pacotes || []).map(pc => ({ pacote: tamTxt(pc.quantidade, a), menor_preco: r2(pc.melhor.preco), mercado: pc.melhor.mercado })),
+      marcas: (a.marcas || []).map(mc => ({ marca: mc.nome, nutrientes: mc.spec ? nutriExp(c => mc.spec[c]) : 'iguais ao genérico', melhor_preco: ofertaExp(mc.melhor, a) })),
+      promocao_ativa: a.promosAtivas?.[0] ? { ...ofertaExp(a.promosAtivas[0], a), valida_ate: dataBR(a.promosAtivas[0].valida_ate) } : null,
+      compra_online: a.online ? (a.link || true) : undefined,
+    })),
+    despensa: usarInventario() && $('#expDesp').checked
+      ? [...estado.inv.values()].map(r => { const a = achar('a' + r.alimento_id); return a ? { alimento: a.nome, quantidade: tamTxt(Number(r.quantidade), a) } : null; }).filter(Boolean)
+      : undefined,
+    receitas: $('#expRec').checked ? estado.receitas.map(r => ({
+      nome: r.nome, tipo: TIPOS[r.tipo], rende_porcoes: r.porcoes,
+      por_porcao: { kcal: r2(r.kcal), proteinas_g: r2(r.prot), carboidratos_g: r2(r.carb), gorduras_g: r2(r.gord), custo: r.preco ? r2(r.preco.min) : null },
+      ingredientes: r.ingredientes.map(i => `${tamTxt(i.quantidade, i.a)} de ${i.a.nome}`),
+    })) : undefined,
+  };
+}
+
+function textoExportacao(o){
+  const M = o.metas_diarias, P = o.pedido;
+  const n = v => v === null || v === undefined ? '-' : String(v).replace('.', ',');
+  const linhas = [];
+  linhas.push('# Pedido');
+  linhas.push(`Você é um nutricionista e planejador de compras. Monte um cardápio de ${P.dias} ${P.dias === 1 ? 'dia' : 'dias'} com ${P.refeicoes_por_dia} refeições por dia para mim, usando os dados abaixo.`);
+  linhas.push('');
+  linhas.push('Regras:');
+  linhas.push(M
+    ? `1. Cada dia deve bater minhas metas: calorias entre ${Math.round(M.calorias_kcal * 0.95)} e ${Math.round(M.calorias_kcal * 1.05)} kcal, proteína de pelo menos ${M.proteinas_g} g, carboidratos perto de ${M.carboidratos_g} g e gorduras perto de ${M.gorduras_g} g.`
+    : '1. Ainda não defini minhas metas: monte um cardápio equilibrado de cerca de 2.000 kcal por dia.');
+  linhas.push('2. Use apenas os alimentos da lista (pode combiná-los em receitas). Minhas receitas também podem ser usadas.');
+  linhas.push(`3. Busque o menor custo possível: use os preços informados${o.despensa ? ', priorize o que já tenho na despensa' : ''} e aproveite as promoções ativas.`);
+  linhas.push('4. Os nutrientes estão na medida indicada (100 g, 100 ml ou 1 unidade). Se uma marca tiver tabela própria, ela vale para aquela marca.');
+  if (P.restricoes) linhas.push(`5. Restrições e preferências: ${P.restricoes}.`);
+  linhas.push('');
+  linhas.push('Para cada refeição, informe: nome do prato, alimentos e quantidades (em g, ml ou unidades), preparo resumido, calorias, proteínas, carboidratos, gorduras e custo estimado.');
+  linhas.push(`No fim de cada dia, mostre os totais comparados com a meta e o custo do dia. No fim, mostre o custo total e uma lista de compras (o que comprar, quanto e em qual mercado sai mais barato)${o.despensa ? ', descontando o que já tenho na despensa' : ''}.`);
+  linhas.push('');
+  if (M){
+    linhas.push('# Minhas metas diárias');
+    linhas.push(`- Calorias: ${M.calorias_kcal} kcal${M.objetivo ? ` (objetivo: ${M.objetivo})` : ''}`);
+    linhas.push(`- Proteínas: ${M.proteinas_g} g | Carboidratos: ${M.carboidratos_g} g | Gorduras: ${M.gorduras_g} g`);
+    linhas.push('');
+  }
+  linhas.push('# Alimentos disponíveis');
+  linhas.push('| Alimento | Medida | kcal | Proteínas (g) | Carboidratos (g) | Gorduras (g) | Fibras (g) | Sódio (mg) | Melhor pacote | Preço por medida | Onde |');
+  linhas.push('|---|---|---|---|---|---|---|---|---|---|---|');
+  o.alimentos.forEach(a => {
+    const q = a.nutrientes, p = a.melhor_preco;
+    linhas.push(`| ${a.nome} | ${a.medida} | ${n(q.kcal)} | ${n(q.proteinas_g)} | ${n(q.carboidratos_g)} | ${n(q.gorduras_g)} | ${n(q.fibras_g)} | ${n(q.sodio_mg)} | ${p ? `R$ ${n(p.preco_pacote)} (${p.pacote})` : 'sem preço'} | ${p ? `R$ ${n(p.preco_por_medida)}` : '-'} | ${p ? p.mercado + (p.marca ? `, ${p.marca}` : '') : '-'} |`);
+  });
+  const comMarca = o.alimentos.flatMap(a => a.marcas.filter(m => typeof m.nutrientes === 'object').map(m => ({ a, m })));
+  if (comMarca.length){
+    linhas.push('');
+    linhas.push('# Marcas com tabela própria');
+    linhas.push('| Alimento | Marca | kcal | Proteínas (g) | Carboidratos (g) | Gorduras (g) | Melhor preço da marca |');
+    linhas.push('|---|---|---|---|---|---|---|');
+    comMarca.forEach(({ a, m }) => linhas.push(`| ${a.nome} | ${m.marca} | ${n(m.nutrientes.kcal)} | ${n(m.nutrientes.proteinas_g)} | ${n(m.nutrientes.carboidratos_g)} | ${n(m.nutrientes.gorduras_g)} | ${m.melhor_preco ? `R$ ${n(m.melhor_preco.preco_pacote)} (${m.melhor_preco.pacote}) em ${m.melhor_preco.mercado}` : '-'} |`));
+  }
+  const promos = o.alimentos.filter(a => a.promocao_ativa);
+  if (promos.length){
+    linhas.push('');
+    linhas.push('# Promoções ativas');
+    promos.forEach(a => { const p = a.promocao_ativa; linhas.push(`- ${a.nome}: R$ ${n(p.preco_pacote)} o pacote de ${p.pacote} em ${p.mercado}${p.marca ? ` (${p.marca})` : ''}, até ${p.valida_ate}`); });
+  }
+  if (o.despensa?.length){
+    linhas.push('');
+    linhas.push('# O que já tenho em casa');
+    o.despensa.forEach(d => linhas.push(`- ${d.alimento}: ${d.quantidade}`));
+  }
+  if (o.receitas?.length){
+    linhas.push('');
+    linhas.push('# Minhas receitas');
+    o.receitas.forEach(r => linhas.push(`- ${r.nome} (${r.tipo}, rende ${n(r.rende_porcoes)} porções): por porção ${n(r.por_porcao.kcal)} kcal, P ${n(r.por_porcao.proteinas_g)} g, C ${n(r.por_porcao.carboidratos_g)} g, G ${n(r.por_porcao.gorduras_g)} g${r.por_porcao.custo ? `, custo R$ ${n(r.por_porcao.custo)}` : ''}. Ingredientes: ${r.ingredientes.join('; ')}.`));
+  }
+  linhas.push('');
+  linhas.push(`(Dados exportados do ${o.app} em ${new Date(o.gerado_em).toLocaleString('pt-BR')}.)`);
+  return linhas.join('\n');
+}
+
+function gerarExportacao(){
+  document.querySelectorAll('[data-fmt]').forEach(b => b.setAttribute('aria-pressed', b.dataset.fmt === expFmt));
+  const o = objetoExportacao();
+  const txt = expFmt === 'json' ? JSON.stringify(o, null, 2) : textoExportacao(o);
+  $('#expSaida').value = txt;
+  const marcas = o.alimentos.reduce((t, a) => t + a.marcas.length, 0);
+  $('#expInfo').textContent = `${plural(o.alimentos.length, 'alimento', 'alimentos')}, ${plural(marcas, 'marca', 'marcas')}${o.receitas ? `, ${plural(o.receitas.length, 'receita', 'receitas')}` : ''}${o.despensa ? `, ${plural(o.despensa.length, 'item da despensa', 'itens da despensa')}` : ''}. ${o.metas_diarias ? '' : 'Dica: preencha seus dados em Configurações para a IA usar a sua meta.'}`;
+  $('#expOk').textContent = '';
+}
+
+function abrirExportar(){
+  $('#expDespLinha').hidden = !usarInventario();
+  gerarExportacao();
+  $('#dlgExportar').showModal();
+}
+['#expDias', '#expRef', '#expPreco', '#expDesp', '#expRec'].forEach(sel => $(sel).addEventListener('change', gerarExportacao));
+$('#expRestr').addEventListener('input', gerarExportacao);
+$('#expFormato').addEventListener('click', e => { const b = e.target.closest('[data-fmt]'); if (b){ expFmt = b.dataset.fmt; gerarExportacao(); } });
+$('#btnExpCopiar').addEventListener('click', async () => {
+  const txt = $('#expSaida').value;
+  try { await navigator.clipboard.writeText(txt); }
+  catch { $('#expSaida').select(); document.execCommand('copy'); }
+  $('#expOk').textContent = 'Copiado! Agora é só colar na IA.';
+});
+$('#btnExpBaixar').addEventListener('click', () => {
+  const json = expFmt === 'json';
+  const blob = new Blob([$('#expSaida').value], { type: json ? 'application/json' : 'text/plain;charset=utf-8' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url; a.download = `aike-${hoje()}.${json ? 'json' : 'txt'}`;
+  document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
+  $('#expOk').textContent = 'Arquivo baixado.';
+});
+$('#btnCfgExportar').addEventListener('click', () => { $('#dlgConfig').close(); abrirExportar(); });
 
 /* ===== ROTINAS ===== */
 // Converte um item salvo da rotina para o alimento/receita do app
@@ -5733,7 +6239,7 @@ $('#dlgPrecos').addEventListener('click', async e => {
 
 /* ===== PREFERÊNCIAS DE VISUALIZAÇÃO ===== */
 const CHAVE_PREFS = 'nutricao_prefs';
-const PREFS_PADRAO = { cor: 'verde', texto: 'normal', densidade: 'confortavel', vis: 'tabela', ocultas: [], macros: 'equilibrada', periodos: [], inventario: false };
+const PREFS_PADRAO = { cor: 'verde', texto: 'normal', densidade: 'confortavel', vis: 'tabela', ocultas: [], macros: 'equilibrada', periodos: [], inventario: false, pet: true, petNome: 'Folhinha' };
 const CORES = { verde: '#2E7D32', azul: '#2463B4', roxo: '#6D44B8', laranja: '#B8541A', rosa: '#B23A6C', grafite: '#3F4A55' };
 const NOMES_CORES = { verde: 'Verde AIKE', azul: 'Azul', roxo: 'Roxo', laranja: 'Laranja', rosa: 'Rosa', grafite: 'Grafite' };
 let prefs = { ...PREFS_PADRAO };
@@ -5891,6 +6397,9 @@ function abrirConfig(){
   const p = auth.perfil || {};
   formConfig.reset();
   $('#chkInventario').checked = !!prefs.inventario;   // o reset desmarcaria o interruptor
+  $('#chkPet').checked = prefs.pet !== false;
+  $('#petNome').value = prefs.petNome || 'Folhinha';
+  $('#cfgVersao').textContent = APP_VERSAO;
   formConfig.nome.value = p.nome || '';
   formConfig.sexo.value = p.sexo || '';
   formConfig.nascimento.value = p.nascimento || '';
@@ -6069,6 +6578,8 @@ async function abrirApp(){
   await carregarPerfil();
   await carregar();
   if (auth.perfilErro) setStatus(auth.perfilErro, 'erro');
+  verificarVersao();
+  carregarPet();
 }
 
 /* ===== INÍCIO ===== */
